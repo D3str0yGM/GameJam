@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<GameObject> holders;
     [SerializeField] List<Sprite> sprites;
     public int holder = 0;
+    public bool holder1, holder2, holder3, holder4, holder5, holder6 = false;
     private void Awake()
     {
         if (instance == null)
@@ -92,17 +93,47 @@ public class UIManager : MonoBehaviour
         {
             if (spriteItem.name == objectName)
             {
+                holders[holder].GetComponent<Image>().enabled = true;
                 holders[holder].GetComponent<Image>().sprite = spriteItem;
-                holders[holder].gameObject.tag = "Use "+ objectName;
+                holders[holder].gameObject.tag = "Use " + objectName;
+                HolderChecker();
                 holder++;
             }
         }
     }
-    public void UseItem(string objectName)
+    public void UseItem(string objectName /*use stul gonderdi*/ )
     {
-        holders.Remove(GameObject.FindGameObjectWithTag(objectName));
-        Destroy(GameObject.FindGameObjectWithTag(objectName));
+        GameObject go = GameObject.FindGameObjectWithTag(objectName);
+        go.GetComponent<Image>().enabled = false;
         holder--;
+        // holders.Remove(GameObject.FindGameObjectWithTag(objectName));
+        // Destroy(GameObject.FindGameObjectWithTag(objectName));
+    }
+
+    public void HolderChecker()
+    {
+        switch (holder)
+        {
+            case 0:
+                holder1 = true;
+                break;
+            case 1:
+                holder2 = true;
+                break;
+            case 2:
+                holder3 = true;
+                break;
+            case 3:
+                holder4 = true;
+                break;
+            case 4:
+                holder5 = true;
+                break;
+            case 5:
+                holder6 = true;
+                break;
+        }
+
     }
 }
 

@@ -43,6 +43,11 @@ public class Dragandrop : MonoBehaviour
                     UIManager.instance.CollectItem(hit.transform.gameObject.name);
                     Destroy(hit.transform.gameObject);
                 }
+                if (hit.transform.gameObject.name == "Daraq")
+                {
+                    UIManager.instance.CollectItem(hit.transform.gameObject.name);
+                    Destroy(hit.transform.gameObject);
+                }
 
 
 
@@ -54,6 +59,10 @@ public class Dragandrop : MonoBehaviour
 
                 }
                 if (hit.transform.gameObject.name == "Use Eynek")
+                {
+                    UIManager.instance.UseItem(hit.transform.gameObject.name);
+                }
+                if (hit.transform.gameObject.name == "Use Daraq")
                 {
                     UIManager.instance.UseItem(hit.transform.gameObject.name);
                 }

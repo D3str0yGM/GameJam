@@ -8,6 +8,7 @@ TagManager:
   - eynek
   - Use Stul
   - Use Eynek
+  - Use Daraq
   layers:
   - Default
   - TransparentFX
