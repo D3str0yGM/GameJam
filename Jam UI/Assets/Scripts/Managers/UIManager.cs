@@ -7,28 +7,38 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
 
+    [Header("PANELS")]
     [SerializeField] Text QualityLevelText;
     [SerializeField] Slider sliderVolume;
 
     // ******************** PANELS ***********************
     [SerializeField] GameObject PausePanel;
-    //[SerializeField] GameObject PauseMenu;
+    [SerializeField] GameObject PauseMenu;
     Image PausePanelImage;
 
     [SerializeField] GameObject SettingsPanel;
     [SerializeField] GameObject SettingsMenu;
-
-
-
+    [Header("Collected Items Settings")]
+    [SerializeField] List<GameObject> holders;
+    [SerializeField] List<Sprite> sprites;
+    public int holder = 0;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            //Destroy(this);
+        }
+    }
     private void Start()
     {
-        PausePanelImage = PausePanel.GetComponent<Image>();
+        //PausePanelImage = PausePanel.GetComponent<Image>();
     }
-
-
-
-
     public void OpenPauseMenu()
     {
         PausePanel.SetActive(true);
@@ -48,17 +58,13 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
-
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OpenPauseMenu();
-        }
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     OpenPauseMenu();
+        // }
     }
-
     public void IncreaseQuality()
     {
         QualitySettings.IncreaseLevel();
@@ -69,18 +75,35 @@ public class UIManager : MonoBehaviour
         QualitySettings.DecreaseLevel();
         UpdateQualityLabel();
     }
-
     private void UpdateQualityLabel()
     {
         int currentQuality = QualitySettings.GetQualityLevel();
         string qualityName = QualitySettings.names[currentQuality];
         QualityLevelText.text = "Quality Level - " + qualityName;
     }
-
     public void SliderVolume()
     {
         AudioListener.volume = sliderVolume.value;
     }
 
-
+    public void CollectItem(string objectName)
+    {
+        foreach (Sprite spriteItem in sprites)
+        {
+            if (spriteItem.name == objectName)
+            {
+                holders[holder].GetComponent<Image>().sprite = spriteItem;
+                holders[holder].gameObject.tag = "Use "+ objectName;
+                holder++;
+            }
+        }
+    }
+    public void UseItem(string objectName)
+    {
+        holders.Remove(GameObject.FindGameObjectWithTag(objectName));
+        Destroy(GameObject.FindGameObjectWithTag(objectName));
+        holder--;
+    }
 }
+
+
