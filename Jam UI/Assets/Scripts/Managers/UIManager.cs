@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<GameObject> holders;
     [SerializeField] List<Sprite> sprites;
     public int holder = 0;
-    public bool holder1, holder2, holder3, holder4, holder5, holder6 = false;
+    public List<bool> holderUsed;
     private void Awake()
     {
         if (instance == null)
@@ -93,48 +93,32 @@ public class UIManager : MonoBehaviour
         {
             if (spriteItem.name == objectName)
             {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (!holderUsed[i])
+                    {
+                        holder = i;
+                        break;
+                    }
+                }
                 holders[holder].GetComponent<Image>().enabled = true;
                 holders[holder].GetComponent<Image>().sprite = spriteItem;
                 holders[holder].gameObject.tag = "Use " + objectName;
-                HolderChecker();
-                holder++;
+                holderUsed[holder] = true;
             }
         }
     }
-    public void UseItem(string objectName /*use stul gonderdi*/ )
+    public void UseItem(string objectName)
     {
         GameObject go = GameObject.FindGameObjectWithTag(objectName);
         go.GetComponent<Image>().enabled = false;
-        holder--;
-        // holders.Remove(GameObject.FindGameObjectWithTag(objectName));
-        // Destroy(GameObject.FindGameObjectWithTag(objectName));
-    }
+        int indexHolder = holders.FindIndex(x => x == GameObject.FindGameObjectWithTag(objectName));
+        holderUsed[indexHolder] = false;
 
-    public void HolderChecker()
-    {
-        switch (holder)
-        {
-            case 0:
-                holder1 = true;
-                break;
-            case 1:
-                holder2 = true;
-                break;
-            case 2:
-                holder3 = true;
-                break;
-            case 3:
-                holder4 = true;
-                break;
-            case 4:
-                holder5 = true;
-                break;
-            case 5:
-                holder6 = true;
-                break;
-        }
 
     }
+
+
 }
 
 
