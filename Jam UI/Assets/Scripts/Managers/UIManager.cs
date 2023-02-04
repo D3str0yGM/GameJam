@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using CASP.CameraManager;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,11 +21,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject SettingsPanel;
     [SerializeField] GameObject SettingsMenu;
+    [SerializeField] Image FadePanel;
     [Header("Collected Items Settings")]
     [SerializeField] List<GameObject> holders;
     [SerializeField] List<Sprite> sprites;
     public int holder = 0;
     public List<bool> holderUsed;
+
     private void Awake()
     {
         if (instance == null)
@@ -38,7 +41,7 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-        //PausePanelImage = PausePanel.GetComponent<Image>();
+        PausePanelImage = PausePanel.GetComponent<Image>();
     }
     public void OpenPauseMenu()
     {
@@ -61,10 +64,10 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Escape))
-        // {
-        //     OpenPauseMenu();
-        // }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenPauseMenu();
+        }
     }
     public void IncreaseQuality()
     {
@@ -114,7 +117,18 @@ public class UIManager : MonoBehaviour
         go.GetComponent<Image>().enabled = false;
         int indexHolder = holders.FindIndex(x => x == GameObject.FindGameObjectWithTag(objectName));
         holderUsed[indexHolder] = false;
+    }
 
+
+
+    public void Fade(string cameraName)
+    {
+        DOTween.To(() => FadePanel.color, x => FadePanel.color = x, new Color32(0, 0, 0, 255), 0.5f).
+        OnComplete(() =>
+        {
+            CameraManager.instance.OpenCamera(cameraName, 0, CameraEaseStates.Linear);
+            DOTween.To(() => FadePanel.color, x => FadePanel.color = x, new Color32(0, 0, 0, 0), 0.5f);
+        });
 
     }
 

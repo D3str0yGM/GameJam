@@ -9,6 +9,7 @@ TagManager:
   - Use Stul
   - Use Eynek
   - Use Daraq
+  - Fade
   layers:
   - Default
   - TransparentFX

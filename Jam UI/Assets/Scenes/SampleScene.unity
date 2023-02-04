@@ -1002,7 +1002,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793610559}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1880,8 +1880,14 @@ MonoBehaviour:
   QualityLevelText: {fileID: 1844608797}
   sliderVolume: {fileID: 910800381}
   PausePanel: {fileID: 478977828}
+  PauseMenu: {fileID: 0}
   SettingsPanel: {fileID: 793610559}
   SettingsMenu: {fileID: 1214134916}
+  FadePanel: {fileID: 0}
+  holders: []
+  sprites: []
+  holder: 0
+  holderUsed: 
 --- !u!4 &1304958064
 Transform:
   m_ObjectHideFlags: 0

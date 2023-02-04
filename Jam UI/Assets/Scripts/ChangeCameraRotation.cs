@@ -9,10 +9,15 @@ public class ChangeCameraRotation : MonoBehaviour
     private Vector3 lastMousePosition;
     private bool mouseButtonDown = false;
     [SerializeField]
-    private CinemachineVirtualCamera activeCamera;
+    private GameObject activeCamera;
     [SerializeField]
     private List<Transform> Walls;
-    int test = 0;
+
+
+    private void Start()
+    {
+
+    }
     void Update()
     {
         ChangeWallView();
@@ -30,12 +35,12 @@ public class ChangeCameraRotation : MonoBehaviour
             if (currentMousePosition.x > lastMousePosition.x)
             {
                 Debug.Log(activeCamera.transform.eulerAngles.y);
-                WallDownAndUpLeft();
+                WallDownAndUpRight();
             }
             else if (currentMousePosition.x < lastMousePosition.x)
             {
                 Debug.Log(activeCamera.transform.eulerAngles.y);
-                WallDownAndUpRight();
+                WallDownAndUpLeft();
             }
             mouseButtonDown = false;
         }
@@ -49,43 +54,43 @@ public class ChangeCameraRotation : MonoBehaviour
         {
             case 315:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, 45, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[0].DOLocalMoveY(58f, 0.2f);
-                Walls[2].DOLocalMoveY(48f, 0.2f);
+                Walls[1].DOLocalMoveY(13, 0.2f);
+                Walls[3].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 314:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, 45, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[0].DOLocalMoveY(58f, 0.2f);
-                Walls[2].DOLocalMoveY(48f, 0.2f);
+                Walls[1].DOLocalMoveY(13, 0.2f);
+                Walls[3].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 45:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, 135, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[1].DOLocalMoveY(58f, 0.2f);
-                Walls[3].DOLocalMoveY(48f, 0.2f);
+                Walls[0].DOLocalMoveY(13, 0.2f);
+                Walls[2].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 44:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, 135, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[1].DOLocalMoveY(58f, 0.2f);
-                Walls[3].DOLocalMoveY(48f, 0.2f);
+                Walls[0].DOLocalMoveY(13, 0.2f);
+                Walls[2].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 135:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, 225, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[2].DOLocalMoveY(58f, 0.2f);
-                Walls[0].DOLocalMoveY(48f, 0.2f);
+                Walls[3].DOLocalMoveY(13, 0.2f);
+                Walls[1].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 134:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, 225, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[2].DOLocalMoveY(58f, 0.2f);
-                Walls[0].DOLocalMoveY(48f, 0.2f);
+                Walls[3].DOLocalMoveY(13, 0.2f);
+                Walls[1].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 224:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, 315, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[3].DOLocalMoveY(58f, 0.2f);
-                Walls[1].DOLocalMoveY(48f, 0.2f);
+                Walls[2].DOLocalMoveY(13, 0.2f);
+                Walls[0].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 225:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, 315, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[3].DOLocalMoveY(58f, 0.2f);
-                Walls[1].DOLocalMoveY(48f, 0.2f);
+                Walls[2].DOLocalMoveY(13, 0.2f);
+                Walls[0].DOLocalMoveY(2.6f, 0.2f);
                 break;
         }
     }
@@ -98,43 +103,43 @@ public class ChangeCameraRotation : MonoBehaviour
         {
             case 315:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, activeCamera.transform.eulerAngles.y - 90, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[1].DOLocalMoveY(58f, 0.2f);
-                Walls[3].DOLocalMoveY(48f, 0.2f);
+                Walls[0].DOLocalMoveY(13, 0.2f);
+                Walls[2].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 314:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, activeCamera.transform.eulerAngles.y - 90, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[1].DOLocalMoveY(58f, 0.2f);
-                Walls[3].DOLocalMoveY(48f, 0.2f);
+                Walls[0].DOLocalMoveY(13, 0.2f);
+                Walls[2].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 224:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, activeCamera.transform.eulerAngles.y - 90, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[0].DOLocalMoveY(58f, 0.2f);
-                Walls[2].DOLocalMoveY(48f, 0.2f);
+                Walls[1].DOLocalMoveY(13, 0.2f);
+                Walls[3].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 225:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, activeCamera.transform.eulerAngles.y - 90, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[0].DOLocalMoveY(58f, 0.2f);
-                Walls[2].DOLocalMoveY(48f, 0.2f);
+                Walls[1].DOLocalMoveY(13, 0.2f);
+                Walls[3].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 134:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, activeCamera.transform.eulerAngles.y - 90, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[3].DOLocalMoveY(58f, 0.2f);
-                Walls[1].DOLocalMoveY(48f, 0.2f);
+                Walls[2].DOLocalMoveY(13, 0.2f);
+                Walls[0].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 135:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, activeCamera.transform.eulerAngles.y - 90, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[3].DOLocalMoveY(58f, 0.2f);
-                Walls[1].DOLocalMoveY(48f, 0.2f);
+                Walls[2].DOLocalMoveY(13, 0.2f);
+                Walls[0].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 44:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, activeCamera.transform.eulerAngles.y - 90, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[2].DOLocalMoveY(58f, 0.2f);
-                Walls[0].DOLocalMoveY(48f, 0.2f);
+                Walls[3].DOLocalMoveY(13, 0.2f);
+                Walls[1].DOLocalMoveY(2.6f, 0.2f);
                 break;
             case 45:
                 activeCamera.transform.DORotate((new Vector3(activeCamera.transform.eulerAngles.x, activeCamera.transform.eulerAngles.y - 90, activeCamera.transform.eulerAngles.x)), 0.3f);
-                Walls[2].DOLocalMoveY(58f, 0.2f);
-                Walls[0].DOLocalMoveY(48f, 0.2f);
+                Walls[3].DOLocalMoveY(13, 0.2f);
+                Walls[1].DOLocalMoveY(2.6f, 0.2f);
                 break;
         }
     }
